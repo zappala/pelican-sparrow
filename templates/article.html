@@ -23,23 +23,27 @@
   </div>
   <div id="article_text">
     {{ article.content }}
-    {% if article.prev_article %}
-    <div id="article_nav" class="left">
-      <i class="icon-chevron-sign-left"></i>
-      <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
-	{{ article.prev_article.title }}
-      </a>
+    <div id="article_nav">
+      {% if article.prev_article %}
+      <div class="left">
+	<i class="icon-chevron-sign-left"></i>
+	<a href="{{ SITEURL }}/{{ article.prev_article.url}}">
+	  {{ article.prev_article.title }}
+	</a>
+      </div>
+      {% endif %}
+      {% if article.next_article %}
+      <div class="right">
+	<div class="spacing"></div>
+	<i class="icon-chevron-sign-right"></i>
+	<a href="{{ SITEURL }}/{{ article.next_article.url}}">
+	  {{ article.next_article.title }}
+	</a>
+      </div>
+      {% endif %}
+      <div class="clear">
+      </div>
     </div>
-    {% endif %}
-    {% if article.next_article %}
-    <div id="article_nav" class="right">
-      <div class="spacing"></div>
-      <i class="icon-chevron-sign-right"></i>
-      <a href="{{ SITEURL }}/{{ article.next_article.url}}">
-	{{ article.next_article.title }}
-      </a>
-    </div>
-    {% endif %}
     <div id="footer">
       <h4>{{ AUTHOR }}</h4>
 
