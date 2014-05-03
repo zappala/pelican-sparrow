@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Archives{% endblock %}
+
+{% block content %}
+<article>
+  <div id="article_text">
+    <h2>Archives</h2>
+    <dl>
+      {% set current_year = None %}
+      {% set current_month = None %}
+      {% for article in dates %}
+      {% set year = article.date|strftime('%Y') %}
+      {% set month = article.date|strftime('%B') %}
+      {% if year != current_year %}
+      {% set current_year = year %}
+      {% set current_month = month %}
+      <dt class="year">{{ article.date|strftime('%Y') }}</dt>
+      <dt class="month">{{ article.date|strftime('%B') }}</dt>
+      {% endif %}
+      {% if month != current_month %}
+      {% set current_month = month %}
+      <dt class="month">{{ article.date|strftime('%B') }}</dt>
+      {% endif %}
+      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+      {% endfor %}
+    </dl>
+  </div>
+</article>
+{% endblock %}

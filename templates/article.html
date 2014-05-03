@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block head %}
+<meta name="keywords" content="{{ article.tags|join(', ')  }}">
+{% endblock %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<article>
+  <div id="article_title">
+    <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+    <div id="article_meta">
+      <p>{{ article.locale_date }}
+	{% if article.tags %}
+	<i class="icon-tags"></i>
+	{% for tag in article.tags %}
+	<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
+	{% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+  <div id="article_text">
+    {{ article.content }}
+    {% if article.prev_article %}
+    <div id="article_nav" class="left">
+      <i class="icon-chevron-sign-left"></i>
+      <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
+	{{ article.prev_article.title }}
+      </a>
+    </div>
+    {% endif %}
+    {% if article.next_article %}
+    <div id="article_nav" class="right">
+      <div class="spacing"></div>
+      <i class="icon-chevron-sign-right"></i>
+      <a href="{{ SITEURL }}/{{ article.next_article.url}}">
+	{{ article.next_article.title }}
+      </a>
+    </div>
+    {% endif %}
+    <div id="footer">
+      <h4>{{ AUTHOR }}</h4>
+
+      <p>{{ BIO }}</p>
+
+      <div class="share">
+      <a class="icon-twitter" href="http://twitter.com/share?text=Commercial Development&url=http://cedarhillsblog.org/commercial-development/"
+         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+      </a>
+      <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://cedarhillsblog.org/commercial-development/"
+         onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+      </a>
+      <a class="icon-google-plus" href="https://plus.google.com/share?url=http://cedarhillsblog.org/commercial-development/"
+         onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+      </a>
+      </div>
+    </div>
+    {% if DISQUS_SITENAME %}
+    <div class="clear">
+    </div>
+    <div class="comments">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "{{ article.url }}";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}
