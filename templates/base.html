@@ -6,7 +6,6 @@
   {% assets filters="less", output="css/style.css", "css/style.less" %}
   <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
   {% endassets %}
-  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css">
   <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pygments.css">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/responsive-nav.css">
   <script src="{{ SITEURL }}/theme/js/responsive-nav.js"></script>
@@ -48,6 +47,8 @@
       <li><a href="{{ SITEURL }}/archives.html">Archives</a></li>
       </ul>
       </nav>
+      <div class='clear'>
+      </div>
       {% endblock header %}
     </header>
 
